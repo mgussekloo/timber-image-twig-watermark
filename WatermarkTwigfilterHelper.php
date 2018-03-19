@@ -59,7 +59,12 @@ class WatermarkTwigfilterHelper {
 
 		$save_filename = $subfolder . '/' . sprintf('%s-watermark-%s.%s',
 			pathinfo($load_filename, PATHINFO_FILENAME),
-			substr(md5($load_filename), 0, 7),
+
+			sprintf('%s_%s',
+				substr(md5($load_filename), 0, 7),
+				substr(md5_file($watermark_image), 0, 7)
+			),
+
 			pathinfo($load_filename, PATHINFO_EXTENSION)
 		);
 
